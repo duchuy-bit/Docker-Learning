@@ -1,0 +1,5 @@
+docker build . -t cpp_test:1.0.0
+
+
+//liet ke danh sach image
+docker images
