@@ -1,0 +1,31 @@
+# Sử dụng hình ảnh cơ sở với GCC
+FROM gcc:latest
+
+# Tạo thư mục làm việc
+# WORKDIR /usr/src/app
+
+# Sao chép các file testcase và script vào container
+# COPY testcases /usr/src/testcases
+# COPY judge.sh /usr/src/app
+# COPY input /usr/src/input
+
+# Tạo thư mục để chứa source code
+RUN mkdir /usr/src/cpp_app
+
+# Copy source code và thư mục test cases vào container
+COPY . /usr/src/cpp_app
+
+# Đặt thư mục làm việc
+WORKDIR /usr/src/cpp_app
+
+# Cài đặt các công cụ cần thiết
+RUN apt-get update && apt-get install -y \
+    make \
+    diffutils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Quyền thực thi cho script chấm điểm
+RUN chmod +x /usr/src/cpp_app/judge.sh
+
+# Thiết lập lệnh mặc định để chạy script chấm điểm
+CMD ["./judge.sh"]
