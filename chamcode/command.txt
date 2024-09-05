@@ -1,0 +1,12 @@
+build: 
+docker build -t cpp-judge .
+
+run: 
+docker run --rm -v ${pwd}\testcases:/usr/src/testcases -v ${pwd}\input:/usr/src/input cpp-judge
+
+
+tạo file test mới trong testcase/ 
+với tên input: input5.txt
+và outputL output5.txt
+
+và run câu lệnh trên thì docker tự lấy các testcase cũ và mới thêm để chạy
